@@ -52,18 +52,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    func countHowManyZsInTheString(text: String) -> Int {
+        var quantityOfZ : Int = 0
+        if (text.contains("Z")) {
+            for char in text{
+                if (char == "Z"){
+                    quantityOfZ += 1
+                }
+            }
+        }
+        return quantityOfZ
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 2{
             if textField1.hasText {
-                let text : String = textField1.text ?? ""
-                var quantityOfZ : Int = 0
-                if (text.contains("Z")) {
-                    for char in text{
-                        if (char == "Z"){
-                            quantityOfZ += 1
-                        }
-                    }
-                }
+                let quantityOfZ = countHowManyZsInTheString(text: textField1.text!)
                 
                 if quantityOfZ > 3 {
                     textField1.layer.borderColor = UIColor.red.cgColor
